@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog API Description</title>
+  </head>
+  <body>
+    <h1>Blog API Description</h1>
+
+    <a href="https://tech-art-blog-api.herokuapp.com/">Blog API origin</a>
+
+    <p>
+        <i>Authorized</i> endpoints require authorization via header:
+        <code>
+            <pre>
+                Authorization: Bearer &lt;token&gt;
+            </pre>
+        </code>
+    </p>
+
+    <dl>
+
+      <dt>
+        <h2>Create user</h2>
+      </dt>
+      <dd>
+        <strong>POST</strong>
+        <a href="https://tech-art-blog-api.herokuapp.com/users">/users</a>
+        <p>
+          <p>Body</p>
+          <code>
+              <pre>
+                {
+                    "username": "admin",
+                    "email": "admin@admin.com",
+                    "password": "123456aQ"
+                }
+              </pre>
+          </code>
+        </p>
+
+        <p>
+          <p>Returns</p>
+          <code>
+              <pre>
+                {
+                    "permissions": [
+                        "write",
+                        "update",
+                        "delete"
+                    ],
+                    "username": "admin",
+                    "email": "admin@admin.com",
+                    "__v": 0,
+                    "id": "6145ebf0513e1f0016b1c540"
+                }
+              </pre>
+          </code>
+        </p>
+      </dd>
+
+      <dt>
+        <h2>Login user</h2>
+      </dt>
+      <dd>
+        <strong>POST</strong>
+        <a href="https://tech-art-blog-api.herokuapp.com/users/login">/users/login</a>
+        <p>
+          <p>Body</p>
+          <code>
+              <pre>
+                {
+                    "username": "admin",
+                    "password": "123456aQ"
+                }
+              </pre>            
+          </code>
+        </p>
+
+        <p>
+          <p>Returns</p>
+          <code>
+              <pre>
+                {
+                    "user": {
+                        "permissions": [
+                            "write",
+                            "update",
+                            "delete"
+                        ],
+                        "username": "admin",
+                        "email": "admin@admin.com",
+                        "__v": 2,
+                        "id": "6145ebf0513e1f0016b1c540"
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTQ1ZWJmMDUxM2UxZjAwMTZiMWM1NDAiLCJpYXQiOjE2MzE5NzMyNjUsImV4cCI6MTYzMjA1OTY2NX0.y_f6pcBVB1ranADB4XvR2RsmFbuiiswwT9cunF6Un7w"
+                }
+              </pre>
+          </code>
+        </p>
+      </dd>
+
+      <dt>
+        <h2>Logout user</h2>
+      </dt>
+      <dd>
+        <strong>POST</strong>
+        <a href="https://tech-art-blog-api.herokuapp.com/users/logout">/users/logout</a> <i>Authorized</i>
+
+        <p>
+          <p>Returns</p>
+          <code>
+              <pre>
+                {
+                    "permissions": [
+                        "write",
+                        "update",
+                        "delete"
+                    ],
+                    "username": "admin",
+                    "email": "admin@admin.com",
+                    "__v": 3,
+                    "id": "6145ebf0513e1f0016b1c540"
+                }
+              </pre>
+          </code>
+        </p>
+      </dd>
+
+      <dt>
+        <h2>Post article</h2>
+      </dt>
+      <dd>
+        <strong>POST</strong>
+        <a href="https://tech-art-blog-api.herokuapp.com/articles">/articles</a> <i>Authorized</i>
+        <p>
+          <p>Body</p>
+          <code>
+              <pre>
+                {
+                    "title": "Mark Milley, US general who stood up to Trump, founders over Kabul strike",
+                    "description": "Civilian deaths in US drone strike deal blow to credibility of chairman of the joint chiefs of staff when he needs it most",
+                    "content": "Three days after a US drone obliterated a car in a Kabul street, General Mark Milley, shrugged off reports of civilian casualties, insisting it was a “righteous strike”.On Friday that word came back to haunt America’s top general when the Pentagon was forced to admit that all 10 dead had been civilians, seven of them children. The drone had hit the wrong white Toyota Corolla.It was, Milley said, a “horrible tragedy of war” and “heart-wrenching”.It was the last act in America’s longest war, as senselessly tragic as much of the 20 years that had gone before.It was also a blow to Milley’s credibility as the chairman of the joint chiefs of staff at a time when he needs it most, at the end of a week of revelations of actions during the Trump administration that appeared to bend and possibly break the rules of how civilian leaders and generals are supposed to interact under US democracy.Milley has already confirmed an account in the book Peril, by the Washington Post’s Bob Woodward and Robert Acosta, that he offered to warn his Chinese counterpart if Donald Trump ordered an attack in the last chaotic weeks of his tenure. He has not denied telling junior officers to consult him if Trump ordered a nuclear launch, an order in conflict with the official chain of command.General Milley cannot undermine civilian authority. The US is not a military junta.Republicans have been demanding his resignation, and even those who have defended him for being prepared to step in to possibly save the world from an arguably deranged US leader, voiced unease at the example set by a general undermining the authority of the elected commander-in-chief.“I think he did the right thing given the terrible situation that we put him in, but it sets a terrible precedent,” said Tom Collina, policy director at the Ploughshares Fund, which advocates disarmament and non-proliferation.“We see General Milley doing something that is very disturbing, which is to violate the distinction between civil and military authority,” Collina said “The decision to launch nuclear weapons should be a civilian decision. We decided this back in 1945. The military should not be the decider on nuclear use.”Trump gave Milley the top job in December 2018, long before his predecessor, General Joseph Dunford, was due to retire, and against the recommendation of the defence secretary of the time, James Mattis.By all accounts, it was the Bostonian’s plain-speaking affability that seems to have appealed to the capricious president, along with his combat experience, his bulldog demeanour and their shared concern over wastefulness in Pentagon spending.Trump’s respect for tough-sounding men in uniform and bipartisan enthusiasm for Milley in Congress made him hard to fire, which in turn gave him a measure of influence over the president.But the relationship began to wear thin with the Black Lives Matter protests in the summer of 2020. Milley fiercely resisted Trump’s efforts to put active-duty troops on the streets to suppress the protests and supported changing the names of army bases named after Confederate generals.",
+                    "tags": ["us", "guardian", "military"]
+                }
+              </pre>            
+          </code>
+        </p>
+
+        <p>
+          <p>Returns</p>
+          <code>
+              <pre>
+                {
+                    "tags": [
+                        "us",
+                        "guardian",
+                        "military"
+                    ],
+                    "title": "Mark Milley, US general who stood up to Trump, founders over Kabul strike",
+                    "description": "Civilian deaths in US drone strike deal blow to credibility of chairman of the joint chiefs of staff when he needs it most",
+                    "content": "Three days after a US drone obliterated a car in a Kabul street, General Mark Milley, shrugged off reports of civilian casualties, insisting it was a “righteous strike”.On Friday that word came back to haunt America’s top general when the Pentagon was forced to admit that all 10 dead had been civilians, seven of them children. The drone had hit the wrong white Toyota Corolla.It was, Milley said, a “horrible tragedy of war” and “heart-wrenching”.It was the last act in America’s longest war, as senselessly tragic as much of the 20 years that had gone before.It was also a blow to Milley’s credibility as the chairman of the joint chiefs of staff at a time when he needs it most, at the end of a week of revelations of actions during the Trump administration that appeared to bend and possibly break the rules of how civilian leaders and generals are supposed to interact under US democracy.Milley has already confirmed an account in the book Peril, by the Washington Post’s Bob Woodward and Robert Acosta, that he offered to warn his Chinese counterpart if Donald Trump ordered an attack in the last chaotic weeks of his tenure. He has not denied telling junior officers to consult him if Trump ordered a nuclear launch, an order in conflict with the official chain of command.General Milley cannot undermine civilian authority. The US is not a military junta.Republicans have been demanding his resignation, and even those who have defended him for being prepared to step in to possibly save the world from an arguably deranged US leader, voiced unease at the example set by a general undermining the authority of the elected commander-in-chief.“I think he did the right thing given the terrible situation that we put him in, but it sets a terrible precedent,” said Tom Collina, policy director at the Ploughshares Fund, which advocates disarmament and non-proliferation.“We see General Milley doing something that is very disturbing, which is to violate the distinction between civil and military authority,” Collina said “The decision to launch nuclear weapons should be a civilian decision. We decided this back in 1945. The military should not be the decider on nuclear use.”Trump gave Milley the top job in December 2018, long before his predecessor, General Joseph Dunford, was due to retire, and against the recommendation of the defence secretary of the time, James Mattis.By all accounts, it was the Bostonian’s plain-speaking affability that seems to have appealed to the capricious president, along with his combat experience, his bulldog demeanour and their shared concern over wastefulness in Pentagon spending.Trump’s respect for tough-sounding men in uniform and bipartisan enthusiasm for Milley in Congress made him hard to fire, which in turn gave him a measure of influence over the president.But the relationship began to wear thin with the Black Lives Matter protests in the summer of 2020. Milley fiercely resisted Trump’s efforts to put active-duty troops on the streets to suppress the protests and supported changing the names of army bases named after Confederate generals.",
+                    "createdAt": "2021-09-18T14:01:48.464Z",
+                    "updatedAt": "2021-09-18T14:01:48.464Z",
+                    "__v": 0,
+                    "id": "6145f14c513e1f0016b1c547"
+                }
+              </pre>
+          </code>
+        </p>
+      </dd>
+
+      <dt>
+        <h2>Get articles</h2>
+      </dt>
+      <dd>
+        <strong>GET</strong>
+        <a href="https://tech-art-blog-api.herokuapp.com/articles">/articles</a>
+        <p>
+          <p>Request params</p>
+          <code>
+              <pre>
+                page=number
+                size=number
+              </pre>            
+          </code>
+        </p>
+
+        <p>
+          <p>Returns</p>
+          <code>
+              <pre>
+                {
+                    "data": [
+                        {
+                            "tags": [
+                                "art",
+                                "guardian"
+                            ],
+                            "title": "Regency nip and tuck … ‘new’ Constable portrait reveals the artist’s diplomacy",
+                            "description": "The newly discovered painting of Emily Treslove, the artist’s neighbour, was redone to lose her double chin",
+                            "createdAt": "2021-09-18T13:41:24.697Z",
+                            "updatedAt": "2021-09-18T13:41:24.697Z",
+                            "id": "6145ec84513e1f0016b1c541"
+                        },
+                        {
+                            "tags": [
+                                "police",
+                                "guardian"
+                            ],
+                            "title": "Florida police search for boyfriend of missing woman Gabby Petito",
+                            "description": "Officers say Brian Laundrie has also disappeared after Petito went missing during couple’s US road trip",
+                            "createdAt": "2021-09-18T13:42:38.453Z",
+                            "updatedAt": "2021-09-18T13:42:38.453Z",
+                            "id": "6145ecce513e1f0016b1c542"
+                        },
+                        {
+                            "tags": [
+                                "us",
+                                "guardian",
+                                "military"
+                            ],
+                            "title": "Mark Milley, US general who stood up to Trump, founders over Kabul strike",
+                            "description": "Civilian deaths in US drone strike deal blow to credibility of chairman of the joint chiefs of staff when he needs it most",
+                            "createdAt": "2021-09-18T13:44:03.149Z",
+                            "updatedAt": "2021-09-18T13:44:03.149Z",
+                            "id": "6145ed23513e1f0016b1c543"
+                        },
+                    ],
+                    "pagination": {
+                        "page": 1,
+                        "size": 10,
+                        "totalPages": 1
+                    }
+                }
+              </pre>
+          </code>
+        </p>
+      </dd>
+
+      <dt>
+        <h2>Get article</h2>
+      </dt>
+      <dd>
+        <strong>GET</strong>
+        <a href="https://tech-art-blog-api.herokuapp.com/articles/:id">/articles/:id</a>
+        <p>
+          <p>Request params</p>
+          <code>
+              <pre>
+                :id=article's id
+              </pre>            
+          </code>
+        </p>
+
+        <p>
+          <p>Returns</p>
+          <code>
+              <pre>
+                {
+                    "tags": [
+                        "art",
+                        "guardian"
+                    ],
+                    "title": "Regency nip and tuck … ‘new’ Constable portrait reveals the artist’s diplomacy",
+                    "description": "The newly discovered painting of Emily Treslove, the artist’s neighbour, was redone to lose her double chin",
+                    "content": "A previously unknown painting by John Constable has been discovered, to the excitement of art historians. A portrait of a Regency woman in all her finery has not only been identified for the first time, but it has survived with the sitter’s diaries in which she had written about it.In various diary entries, Emily Treslove described receiving the portrait in 1826 from Constable and sitting for him again three years later so that he could make “the likeness stronger” – the artistic equivalent of a nip and tuck. Constable slimmed down her cheek and nose and painted out her double-chin, a technical study reveals.Anne Lyles, a world-renowned authority on Constable, told the Observer: “Most of us don’t like photographs of ourselves. It’s the same old thing.”Describing the portrait as “fascinating and beautiful”, she said that no one had any idea that it had survived. The picture, an oil on canvas, measures 76.2 x 63.5cm. Treslove was Constable’s neighbour in Charlotte Street, the central London address of his spacious studio. Her husband, Thomas, a QC, was also known to have been painted by Constable about 1822, but his portrait was thought to have been lost.Now both paintings have emerged for the first time. Two brothers, the Tresloves’ descendants who wish to remain anonymous, recently each inherited one.Searching the internet, they found a leading art restorer, Sarah Cove, founder of the Constable Research Project, which focuses on technical and scientific study. She confirmed the attribution.She removed almost 200 years of grime, soot and discoloured varnish from Emily’s portrait, revealing delicate details of her glistening gold and garnet jewels and her lavish satin and lace dress.She said: “The portrait of Emily has the most fantastic costume of any female portrait painted by Constable. It is extraordinarily exuberant, amazingly elaborate.",
+                    "createdAt": "2021-09-18T13:41:24.697Z",
+                    "updatedAt": "2021-09-18T13:41:24.697Z",
+                    "__v": 0,
+                    "id": "6145ec84513e1f0016b1c541"
+                }
+              </pre>
+          </code>
+        </p>
+      </dd>
+
+      <dt>
+        <h2>Delete article</h2>
+      </dt>
+      <dd>
+        <strong>DELETE</strong>
+        <a href="https://tech-art-blog-api.herokuapp.com/articles/:id">/articles/:id</a> <i>Authorized</i>
+        <p>
+          <p>Request params</p>
+          <code>
+              <pre>
+                :id=article's id
+              </pre>            
+          </code>
+        </p>
+
+        <p>
+          <p>Returns</p>
+          <code>
+              <pre>
+                {
+                    "tags": [
+                        "art",
+                        "guardian"
+                    ],
+                    "title": "Regency nip and tuck … ‘new’ Constable portrait reveals the artist’s diplomacy",
+                    "description": "The newly discovered painting of Emily Treslove, the artist’s neighbour, was redone to lose her double chin",
+                    "content": "A previously unknown painting by John Constable has been discovered, to the excitement of art historians. A portrait of a Regency woman in all her finery has not only been identified for the first time, but it has survived with the sitter’s diaries in which she had written about it.In various diary entries, Emily Treslove described receiving the portrait in 1826 from Constable and sitting for him again three years later so that he could make “the likeness stronger” – the artistic equivalent of a nip and tuck. Constable slimmed down her cheek and nose and painted out her double-chin, a technical study reveals.Anne Lyles, a world-renowned authority on Constable, told the Observer: “Most of us don’t like photographs of ourselves. It’s the same old thing.”Describing the portrait as “fascinating and beautiful”, she said that no one had any idea that it had survived. The picture, an oil on canvas, measures 76.2 x 63.5cm. Treslove was Constable’s neighbour in Charlotte Street, the central London address of his spacious studio. Her husband, Thomas, a QC, was also known to have been painted by Constable about 1822, but his portrait was thought to have been lost.Now both paintings have emerged for the first time. Two brothers, the Tresloves’ descendants who wish to remain anonymous, recently each inherited one.Searching the internet, they found a leading art restorer, Sarah Cove, founder of the Constable Research Project, which focuses on technical and scientific study. She confirmed the attribution.She removed almost 200 years of grime, soot and discoloured varnish from Emily’s portrait, revealing delicate details of her glistening gold and garnet jewels and her lavish satin and lace dress.She said: “The portrait of Emily has the most fantastic costume of any female portrait painted by Constable. It is extraordinarily exuberant, amazingly elaborate.",
+                    "createdAt": "2021-09-18T13:41:24.697Z",
+                    "updatedAt": "2021-09-18T13:41:24.697Z",
+                    "__v": 0,
+                    "id": "6145ec84513e1f0016b1c541"
+                }
+              </pre>
+          </code>
+        </p>
+      </dd>
+
+      <dt>
+        <h2>Update article</h2>
+      </dt>
+      <dd>
+        <strong>PUT</strong>
+        <a href="https://tech-art-blog-api.herokuapp.com/articles/:id">/articles/:id</a> <i>Authorized</i>
+        <p>
+          <p>Request params</p>
+          <code>
+              <pre>
+                :id=article's id
+              </pre>            
+          </code>
+          <p>Body</p>
+          <code>
+              <pre>
+                "tags": [
+                "police",
+                "guardian"
+            ],
+            "title": "Florida police search for boyfriend of missing woman Gabby Petito",
+            "description": "Officers say Brian Laundrie has also disappeared after Petito went missing during couple’s US road trip",
+            "content": "Police are searching for the boyfriend of a woman who went missing while they were on a road trip in the US.Officers in Florida said they were working with the FBI to locate 23-year-old Brian Laundrie, a person of interest in the disappearance of his girlfriend, Gabrielle “Gabby” Petito.North Port police said Laundrie’s family had told officers they had not seen him since Tuesday. Police said the conversation on Friday evening was the first time they had spoken with Laundrie’s family in detail about the case, and that the meeting came at the family’s request.An attorney for the family called FBI investigators and said they wanted to talk about Laundrie’s disappearance, police said.Laundrie and Petito, 22, left in July on a cross-country trek in a converted van to visit national parks in the US west. She was reported missing on 11 September by her family.Investigators said Laundrie returned in the van to his parents’ home in North Port, Florida, on 1 September. He was then identified as a person of interest in the case, which has attracted much media attention, partly due to Petito’s large following on Instagram.“It is important to note that while Brian is a person of interest in Gabby’s disappearance, he is not wanted for a crime,” North Port police said in Friday’s statement. It added that the investigation was now a “multiple missing person” case.Steven Bertolino, an attorney for Brian Laundrie, did not respond to a request for comment on Friday night.Earlier in the week, Petito’s family pleaded for the Laundrie family to tell them where their son last saw her.Petito and Laundrie met while growing up on Long Island. His parents later moved to North Port, about 35 miles (56km) south of Sarasota.Police video released by the Moab police department in Utah showed that an officer pulled the van over on 12 August after it was seen speeding and hitting a kerb near the entrance to Arches national park. The body cam video showed an emotional Petito, who sat inside a police cruiser while officers also questioned Laundrie.Laundrie said on the video the couple got into a minor scuffle that began when he climbed into the van with dirty feet, and said he did not want to pursue a domestic violence charge against Petito, who officers decided was the aggressor.He told the officers he was not going to pursue charges because he loved her. “It was just a squabble. Sorry it had to get so public,” Laundrie says on the video."
+              </pre>
+          </code>
+        </p>
+
+        <p>
+          <p>Returns</p>
+          <code>
+              <pre>
+                {
+                    "tags": [
+                        "police",
+                        "guardian"
+                    ],
+                    "title": "Florida police search for boyfriend of missing woman Gabby Petito",
+                    "description": "Officers say Brian Laundrie has also disappeared after Petito went missing during couple’s US road trip",
+                    "content": "Police are searching for the boyfriend of a woman who went missing while they were on a road trip in the US.Officers in Florida said they were working with the FBI to locate 23-year-old Brian Laundrie, a person of interest in the disappearance of his girlfriend, Gabrielle “Gabby” Petito.North Port police said Laundrie’s family had told officers they had not seen him since Tuesday. Police said the conversation on Friday evening was the first time they had spoken with Laundrie’s family in detail about the case, and that the meeting came at the family’s request.An attorney for the family called FBI investigators and said they wanted to talk about Laundrie’s disappearance, police said.Laundrie and Petito, 22, left in July on a cross-country trek in a converted van to visit national parks in the US west. She was reported missing on 11 September by her family.Investigators said Laundrie returned in the van to his parents’ home in North Port, Florida, on 1 September. He was then identified as a person of interest in the case, which has attracted much media attention, partly due to Petito’s large following on Instagram.“It is important to note that while Brian is a person of interest in Gabby’s disappearance, he is not wanted for a crime,” North Port police said in Friday’s statement. It added that the investigation was now a “multiple missing person” case.Steven Bertolino, an attorney for Brian Laundrie, did not respond to a request for comment on Friday night.Earlier in the week, Petito’s family pleaded for the Laundrie family to tell them where their son last saw her.Petito and Laundrie met while growing up on Long Island. His parents later moved to North Port, about 35 miles (56km) south of Sarasota.Police video released by the Moab police department in Utah showed that an officer pulled the van over on 12 August after it was seen speeding and hitting a kerb near the entrance to Arches national park. The body cam video showed an emotional Petito, who sat inside a police cruiser while officers also questioned Laundrie.Laundrie said on the video the couple got into a minor scuffle that began when he climbed into the van with dirty feet, and said he did not want to pursue a domestic violence charge against Petito, who officers decided was the aggressor.He told the officers he was not going to pursue charges because he loved her. “It was just a squabble. Sorry it had to get so public,” Laundrie says on the video.",
+                    "createdAt": "2021-09-18T13:42:38.453Z",
+                    "updatedAt": "2021-09-18T13:42:38.453Z",
+                    "__v": 0,
+                    "id": "6145ecce513e1f0016b1c542"
+                }
+              </pre>
+          </code>
+        </p>
+      </dd>
+
+      <dt>
+        <h2>Refresh token</h2>
+      </dt>
+      <dd>
+        <strong>POST</strong>
+        <a href="https://tech-art-blog-api.herokuapp.com/users/refreshToken">/users/refreshToken</a> <i>Authorized</i>
+
+        <p>
+          <p>Returns</p>
+          <code>
+              <pre>
+                {
+                    "user": {
+                        "permissions": [
+                            "write",
+                            "update",
+                            "delete"
+                        ],
+                        "username": "admin",
+                        "email": "admin@admin.com",
+                        "__v": 2,
+                        "id": "6145e98996b58014e4a4ec0e"
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTQ1ZTk4OTk2YjU4MDE0ZTRhNGVjMGUiLCJpYXQiOjE2MzE5NzQ2OTQsImV4cCI6MTYzMjA2MTA5NH0.RlSe1ep-5oy5I9dihtR1va5-ey-efdeiTNALSZ_BjgQ"
+                }
+              </pre>
+          </code>
+        </p>
+      </dd>
+
+
+
+
+    </dl>
+  </body>
+</html>
